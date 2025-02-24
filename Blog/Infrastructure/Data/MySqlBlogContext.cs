@@ -14,13 +14,13 @@ namespace Blog.Infrastructure.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //var config = new ConfigurationBuilder()
-                //    .SetBasePath(Directory.GetCurrentDirectory())
-                //    .AddJsonFile("appsettings.json")
-                //    .Build();
-                //var connectionString = config.GetConnectionString("MySQLConnectionString");
+                var config = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
 
-                var connectionString = "Server=localhost;DataBase=blog_db;Uid=root;Pwd=admin123";
+                var connectionString = config.GetSection("MySQlConnection:MySQLConnectionString").Value;
+
 
                 optionsBuilder.UseMySql(
                        connectionString,

@@ -13,8 +13,12 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Configuração do banco de dados
-//var connectionString = builder.Configuration.GetConnectionString("MySQLConnectionString");
-var connectionString = "Server = localhost; DataBase = blog_db; Uid = root; Pwd = admin123";
+var config = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+
+var connectionString = config.GetSection("MySQlConnection:MySQLConnectionString").Value;
 
 builder.Services.AddDbContext<MySqlBlogContext>(options =>
     options.UseMySql(connectionString,
