@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using Blog.Domain.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.Extensions.Configuration;
+using Blog.Application.DTOs.Auth;
 
 namespace Blog.Controllers
 {
@@ -69,16 +68,5 @@ namespace Blog.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
-
-    public class UserRegisterDto
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
-
-    public class UserLoginDto
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
+    
 }
